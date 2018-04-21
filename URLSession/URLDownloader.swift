@@ -17,9 +17,9 @@ class URLDownloader: NSObject{
         self.url = URL
     }
     
-    func download(){
+    func download(delegate: URLSessionDelegate? = nil){
         guard let url = self.url else{ return }
-        session = URLSession(configuration: .default, delegate: ViewController(), delegateQueue: nil)
+        session = URLSession(configuration: .default, delegate: delegate, delegateQueue: nil)
         let task = session?.downloadTask(with: url)
         task?.resume()
     }
